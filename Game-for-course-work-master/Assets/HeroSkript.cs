@@ -6,7 +6,7 @@ public class HeroSkript : MonoBehaviour
 {
     //speed
     public float speed = 10f;
-    public float move;
+    public float YSpeed;
 
     //one jump and check on ground
     bool grounded = false;
@@ -23,7 +23,9 @@ public class HeroSkript : MonoBehaviour
     //Animator
     private Animator animator;
 
+    //Inicilizing Hero
     Rigidbody2D rigid;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,30 +38,43 @@ public class HeroSkript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
+            rigid.AddForce(new Vector2(0, 150f));
+        }
+    }
 
-        grounded = Physics2D.OverlapCircle(GroundCheck.position,groundRadius,whatIsGround);
+    private void FixedUpdate()
+    {
+        grounded = Physics2D.OverlapCircle(GroundCheck.position, groundRadius, whatIsGround);
 
-        
+        /////////////////////////
+        YSpeed = rigid.velocity.y;
+        ////////////////////////
+        float move;
         move = Input.GetAxis("Horizontal");
         rigid.velocity = new Vector2(move * speed, rigid.velocity.y);
 
-        if(Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
-            rigid.AddForce(new Vector2(0, 155f));
-        }
-
+        //Check Flip facing
         if (move < 0 && facingRight)
             Flip();
         else if (move > 0 && !facingRight)
             Flip();
+
+        //Action on ground or not
         if (grounded)
         {
             animator.SetFloat("Speed", Mathf.Abs(move));
             animator.SetBool("OnGround", true);
         }
         else
+        { 
+            animator.SetFloat("YSpeed", rigid.velocity.y);
             animator.SetBool("OnGround", false);
+        }
     }
+
+    //Right or left face hero
     void Flip()
     {
         facingRight = !facingRight;
@@ -68,9 +83,11 @@ public class HeroSkript : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    //DethZone
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "DeathZone")
             rigid.position = new Vector2(PosX, PosY);
     }
+
 }
