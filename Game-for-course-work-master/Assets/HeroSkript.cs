@@ -45,7 +45,7 @@ public class HeroSkript : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            rigid.AddForce(new Vector2(0, 125f));
+            rigid.AddForce(new Vector2(0, 155f));
         }
 
         if (move < 0 && facingRight)
