@@ -23,13 +23,13 @@ public class LadderScript : MonoBehaviour
             }
             else
             {
-                other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                other.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0.000000000000000001f);
             }
         }
     }
-    void OnTriggerExit2D(Collider2D other)
-    {
+   void OnTriggerExit2D(Collider2D other)
+   {
         other.GetComponent<Rigidbody2D>().gravityScale = 1;
-    }
+   }
 
 }

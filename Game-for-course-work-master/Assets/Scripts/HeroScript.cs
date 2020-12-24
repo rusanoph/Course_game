@@ -71,6 +71,7 @@ public class HeroScript : MonoBehaviour
         {
             animator.SetFloat("Speed", Mathf.Abs(move));
             animator.SetBool("OnGround", true);
+            animator.SetFloat("YSpeed", rigid.velocity.y);
         }
         else
         { 
@@ -81,10 +82,12 @@ public class HeroScript : MonoBehaviour
         if(IsLadder)
         {
             animator.SetBool("OnLadder", true);
+            animator.SetFloat("LadderSpeedY", Mathf.Abs(rigid.velocity.y));
         }
         else 
         {
             animator.SetBool("OnLadder", false);
+            animator.SetFloat("LadderSpeedY", 0);
         }
     }
 
