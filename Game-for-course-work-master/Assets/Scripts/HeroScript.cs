@@ -45,6 +45,7 @@ public class HeroScript : MonoBehaviour
         {
             rigid.AddForce(new Vector2(0, 150f));
         }
+
     }
 
     private void FixedUpdate()
