@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="Assets\AllSkyFree\AllSkyFree_Menu.cs" />
     <Compile Include="Assets\BrokeScript.cs" />
+    <Compile Include="Assets\Exit\WindowGameOverScript.cs" />
+    <Compile Include="Assets\MainMenu\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\CamScript.cs" />
     <Compile Include="Assets\Scripts\HeroScript.cs" />
     <Compile Include="Assets\Scripts\LadderScript.cs" />

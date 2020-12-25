@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroScript : MonoBehaviour
 {
@@ -18,13 +19,16 @@ public class HeroScript : MonoBehaviour
     bool facingRight = true;
 
     //Spawn
-    float PosX, PosY;
+    public float PosX, PosY;
 
     //Animator
     private Animator animator;
     //Ladder animation
     bool IsLadder = false;
     public LayerMask whatIsLadder;
+
+    //Death pal
+    public GameObject WindowGameOver;
 
     //Inicilizing Hero
     Rigidbody2D rigid;
@@ -36,6 +40,8 @@ public class HeroScript : MonoBehaviour
         PosX = rigid.position.x;
         PosY = rigid.position.y;
         animator = GetComponent<Animator>();
+        Cursor.visible = false;
+        WindowGameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -99,12 +105,15 @@ public class HeroScript : MonoBehaviour
         theScale.x *=-1;
         transform.localScale = theScale;
     }
-
     //DethZone
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "DeathZone")
-            rigid.position = new Vector2(PosX, PosY);
+        {
+            Cursor.visible = true;
+            WindowGameOver.SetActive(true);
+        }
+        
     }
 
 }
