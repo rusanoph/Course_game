@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HeroScript : MonoBehaviour
 {
@@ -27,9 +28,6 @@ public class HeroScript : MonoBehaviour
     bool IsLadder = false;
     public LayerMask whatIsLadder;
 
-    //Death pal
-    public GameObject WindowGameOver;
-
     //Inicilizing Hero
     Rigidbody2D rigid;
 
@@ -41,7 +39,6 @@ public class HeroScript : MonoBehaviour
         PosY = rigid.position.y;
         animator = GetComponent<Animator>();
         Cursor.visible = false;
-        WindowGameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -111,7 +108,7 @@ public class HeroScript : MonoBehaviour
         if (col.gameObject.tag == "DeathZone")
         {
             Cursor.visible = true;
-            WindowGameOver.SetActive(true);
+            SceneManager.LoadScene(2);
         }
         
     }

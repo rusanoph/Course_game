@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WindowGameOverScript : MonoBehaviour
 {
+
     public void CountinePressed()
     {
         SceneManager.LoadScene(1);
